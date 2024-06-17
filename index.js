@@ -1,4 +1,3 @@
-let variavel = 0;
 let usuarios = [
   {
     nome: "pedro",
@@ -21,21 +20,19 @@ console.log(
 );
 process.stdin.on("data", function (data) {
   let entrada = data.toString().trim().toLowerCase();
+  let usuario;
   for (let i = 0; i < usuarios.length; i++) {
     if (usuarios[i].email === entrada) {
-      console.log(
-        "usuario encontrado: " +
-          " nome: " +
-          usuarios[i].nome +
-          " idade: " +
-          usuarios[i].idade +
-          " email: " +
-          usuarios[i].email
-      );
-      variavel = 1;
-      console.log('insira um novo email para buscar usuario ou digite "sair"');
-    } else {
-        variavel = 0
+      usuario = usuarios[i];
     }
+  }
+  if (usuario) {
+    console.log('usuario encontrado')
+    console.log(usuario);
+    console.log('insira um novo email para buscar usuario ou digite "sair"');
+  } else if (entrada === "sair") {
+    process.exit();
+  } else {
+    console.log('usuario nao encontrado, tente novamente ou digite "sair"');
   }
 });
